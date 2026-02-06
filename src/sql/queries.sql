@@ -37,7 +37,7 @@ WHERE region_id=2;
 -- Your query here;
 --¿Cuántas observaciones se registraron el día 1998-08-08?;
 SELECT COUNT(*)FROM Observations
-WHERE observation_date="1998-08-08";
+WHERE observation_date = '1998-08-08';
 
 
 -- MISSION 6
@@ -67,14 +67,14 @@ LIMIT 5;
 SELECT species_id, COUNT(*) AS Less_Common
 FROM Observations
 GROUP BY species_id
-HAVING COUNT(count) < 5
+HAVING COUNT(*) < 5;
 
 --MISSION 9
 --¿Qué observadores (observer) registraron más observaciones?;
 SELECT observer, COUNT(*) AS More_observations
 FROM Observations
 GROUP BY observer
-ORDER BY More_observations DESC
+ORDER BY More_observations DESC;
 
 --MISION 10
 --Muestra el nombre de la región (regions.name) para cada observación;
@@ -87,7 +87,7 @@ JOIN regions ON Observations.region_id = regions.id;
 --Muestra el nombre científico de cada especie registrada (species.scientific_name);
 SELECT Observations.id, species.scientific_name AS Name_of_Species
 FROM Observations
-JOIN species ON Observations.species_id = species.id
+JOIN species ON Observations.species_id = species.id;
 
 --MISSION 12
 --¿Cuál es la especie más observada por cada región?;
@@ -97,4 +97,4 @@ FROM Observations
 JOIN regions ON Observations.region_id = regions.id
 JOIN species ON Observations.species_id = species.id
 GROUP BY regions.name, species.scientific_name
-ORDER BY regions.name, total_observations DESC
+ORDER BY regions.name, total_observations DESC;
